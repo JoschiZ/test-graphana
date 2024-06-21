@@ -1,0 +1,22 @@
+receivers:
+  otlp:
+    protocols:
+      grpc:
+        endpoint: ":4317"
+      http:
+        endpoint: ":4318"
+
+exporters:
+  otlphttp:
+    endpoint: "http://loki:3100/otlp"
+
+service:
+  telemetry:
+    logs:
+      level: "debug"
+    metrics:
+      address: ":8888"
+  pipelines:
+    logs:
+      receivers: [otlp]
+      exporters: [otlphttp]

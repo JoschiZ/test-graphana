@@ -1,0 +1,24 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestTelemetry", "TestTelemetry\TestTelemetry.csproj", "{07260E32-08C3-4256-B46A-1BEF0A097AFA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E86871A8-9B5D-4731-A710-B6A12D4E5640}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose.yml = docker-compose.yml
+		prometheus\prometheus.yml = prometheus\prometheus.yml
+		config\loki.yml = config\loki.yml
+		config\otel-collector-config.yaml = config\otel-collector-config.yaml
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{07260E32-08C3-4256-B46A-1BEF0A097AFA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07260E32-08C3-4256-B46A-1BEF0A097AFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07260E32-08C3-4256-B46A-1BEF0A097AFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07260E32-08C3-4256-B46A-1BEF0A097AFA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,21 @@
+# This is a generated file. Not intended for manual editing.
+services:
+  app:
+    build:
+      context: "F:\\Programming\\docker\\loki\\TestTelemetry"
+      dockerfile: "TestTelemetry/Dockerfile"
+      target: "base"
+    command: []
+    entrypoint:
+    - "dotnet"
+    - "/app/bin/Debug/net8.0/TestTelemetry.dll"
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Development"
+      DOTNET_USE_POLLING_FILE_WATCHER: "true"
+    image: "testtelemetry:dev"
+    ports: []
+    volumes:
+    - "C:\\Users\\josch\\.nuget\\packages:/root/.nuget/packages"
+    - "F:\\Programming\\docker\\loki\\TestTelemetry\\TestTelemetry:/app:rw"
+    - "F:\\Programming\\docker\\loki\\TestTelemetry:/src:rw"
+    working_dir: "/app"

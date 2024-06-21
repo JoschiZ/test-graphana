@@ -1,0 +1,99 @@
+﻿networks:
+  loki:
+    
+volumes:
+  prometheus_data: {}
+  
+
+services:
+  app:
+    container_name: app
+    ports:
+      - "8080:8080"
+    build:
+      context: .
+      dockerfile: TestTelemetry/Dockerfile
+    networks:
+      - loki
+
+  loki:
+    container_name: loki
+    image: grafana/loki:3.0.0 # we need 3.0 or later for otlp logs
+    ports:
+      - "3100:3100"
+    volumes:
+      - ./config:/etc/config
+    command: -config.file=/etc/loki/local-config.yaml
+    #network_mode: host
+    networks:
+      - loki
+        
+  otel:
+    container_name: otel
+    image: otel/opentelemetry-collector-contrib
+    volumes:
+      - ./config/otel-collector-config.yaml:/etc/otelcol-contrib/config.yaml
+    ports:
+      - "1888:1888" # pprof extension
+      - "8888:8888" # Prometheus metrics exposed by the Collector
+      - "8889:8889" # Prometheus exporter metrics
+      - "13133:13133" # health_check extension
+      - "4317:4317" # OTLP gRPC receiver
+      - "4318:4318" # OTLP http receiver
+      - "55679:55679" # zpages extension
+    networks:
+      - loki
+
+
+  grafana:
+    container_name: grafana
+    environment:
+      - GF_PATHS_PROVISIONING=/etc/grafana/provisioning
+      - GF_AUTH_ANONYMOUS_ENABLED=true
+      - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
+    entrypoint:
+      - sh
+      - -euc
+      - |
+        mkdir -p /etc/grafana/provisioning/datasources
+        cat <<EOF > /etc/grafana/provisioning/datasources/ds.yaml
+        apiVersion: 1
+        datasources:
+        - name: Loki
+          type: loki
+          access: proxy 
+          orgId: 1
+          url: http://loki:3100
+          basicAuth: false
+          isDefault: true
+          version: 1
+          editable: false
+        - name: prometheus
+          access: proxy
+          type: prometheus
+          url: http://prometheus:9090
+          isDefault: false
+          orgId: 1
+          editable: true
+          jsonData:
+            timeInterval: 10s
+        EOF
+        /run.sh
+    image: grafana/grafana:latest
+    ports:
+      - "3000:3000"
+    #network_mode: host
+    networks:
+      - loki
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    restart: unless-stopped
+    volumes:
+      - ./prometheus/:/etc/prometheus/
+      - prometheus_data:/prometheus
+    ports:
+      - "9090:9090"
+    #network_mode: host
+    networks:
+      - loki
