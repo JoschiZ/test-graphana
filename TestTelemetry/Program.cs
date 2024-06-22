@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.HttpLogging;
+using OpenTelemetry.Exporter;
 using OpenTelemetry.Metrics;
+using OpenTelemetry.Resources;
 using Serilog;
 using Serilog.Sinks.Grafana.Loki;
 using Serilog.Sinks.OpenTelemetry;
@@ -17,7 +19,7 @@ builder.Services.AddHttpClient();
 
 builder.Services.AddHttpLogging(x =>
 {
-    x.CombineLogs = true;
+    //x.CombineLogs = true;
     x.LoggingFields = HttpLoggingFields.All;
 });
 
@@ -44,6 +46,26 @@ builder.Services.AddSerilog((serviceProvider, loggerConfig) =>
 builder.Services.AddOpenTelemetry()
     .WithMetrics(x =>
     {
+        x.AddAspNetCoreInstrumentation();
+        x.AddHttpClientInstrumentation();
+        x.AddRuntimeInstrumentation();
+        x.AddProcessInstrumentation();
+        
+        x.AddOtlpExporter(((options, readerOptions) =>
+        {
+            options.Protocol = OtlpExportProtocol.Grpc;
+            options.Endpoint = new Uri("http://otel:4317");
+            
+            readerOptions.PeriodicExportingMetricReaderOptions.ExportIntervalMilliseconds = 5000;
+        }));
+        x.ConfigureResource(resourceBuilder =>
+        {
+            resourceBuilder.AddAttributes(new KeyValuePair<string, object>[]
+            {
+                new KeyValuePair<string, object>("service.name", "otelapp"),
+                new KeyValuePair<string, object>("service.instance.id", "instance1"),
+            });
+        });
         x.AddMeter(
             "Microsoft.AspNetCore.Hosting",
             "Microsoft.AspNetCore.Server.Kestrel");
