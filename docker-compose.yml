@@ -9,7 +9,8 @@ services:
   app:
     container_name: app
     ports:
-      - "8080:8080"
+      #- "8080:8080" #NET 8 (Net 8 changes the default port from 80 to 8080)
+      - "8080:80" #NET 7
     build:
       context: .
       dockerfile: TestTelemetry/Dockerfile
@@ -94,6 +95,7 @@ services:
       - prometheus_data:/prometheus
     ports:
       - "9090:9090"
+    command: "--web.enable-remote-write-receiver --config.file=/etc/prometheus/prometheus.yml"
     #network_mode: host
     networks:
       - loki

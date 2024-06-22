@@ -10,18 +10,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4a9cdc7c-e0b6-4e79-99c6-e6577582a7c5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.dockerignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TestTelemetry.sln" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TestTelemetry/Controllers/WeatherForecastController.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TestTelemetry/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TestTelemetry/Program.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TestTelemetry/Properties/launchSettings.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TestTelemetry/TestTelemetry.csproj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TestTelemetry/WeatherForecast.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TestTelemetry/appsettings.Development.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TestTelemetry/appsettings.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/global.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.TestTelemetry/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TestTelemetry/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/otel-collector-config.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/otel-collector-config.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/global.json" beforeDir="false" afterPath="$PROJECT_DIR$/global.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/prometheus/prometheus.yml" beforeDir="false" afterPath="$PROJECT_DIR$/prometheus/prometheus.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,7 +44,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     ".NET Launch Settings Profile.TestTelemetry: http.executor": "Run",
-    ".NET Launch Settings Profile.TestTelemetry: https.executor": "Run",
+    ".NET Launch Settings Profile.TestTelemetry: https.executor": "Debug",
     "Docker.TestTelemetry/Dockerfile.executor": "Run",
     "Docker.component-hub/compose.yml: Compose Deployment.executor": "Run",
     "Docker.docker-compose.yml.app: Compose Deployment.executor": "Run",
@@ -220,7 +213,8 @@
       <option name="presentableId" value="Default" />
       <updated>1718960513077</updated>
       <workItem from="1718960514293" duration="13376000" />
-      <workItem from="1718988525674" duration="3798000" />
+      <workItem from="1718988525674" duration="4509000" />
+      <workItem from="1719044439135" duration="4040000" />
     </task>
     <servers />
   </component>

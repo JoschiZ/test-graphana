@@ -4,7 +4,7 @@ global:
 scrape_configs:
   - job_name: 'read-prometheus'
     static_configs:
-    - targets: ['app:8080']
+    - targets: ['XXXapp:8080']
   - job_name: 'read-otel'
     static_configs:
-    - targets: ['otel:8888']
+    - targets: ['XXXotel:8888']
