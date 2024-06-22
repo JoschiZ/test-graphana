@@ -4,8 +4,8 @@ using OpenTelemetry.Metrics;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
 using Serilog;
-using Serilog.Sinks.Grafana.Loki;
 using Serilog.Sinks.OpenTelemetry;
+using TestTelemetry;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -31,7 +31,7 @@ builder.Services.AddSerilog((serviceProvider, loggerConfig) =>
         .WriteTo.Console()
         .WriteTo.OpenTelemetry(x =>
         {
-            x.Endpoint = "http://otel:4317";
+            x.Endpoint = "http://otel:4317"; 
             x.Protocol = OtlpProtocol.Grpc;
             x.IncludedData = IncludedData.SpanIdField | IncludedData.TraceIdField;
             x.ResourceAttributes = new Dictionary<string, object>()
@@ -67,15 +67,13 @@ builder.Services.AddOpenTelemetry()
                 new("service.instance.id", "instance1"),
             });
         });
-        x.AddMeter(
-            "Microsoft.AspNetCore.Hosting",
-            "Microsoft.AspNetCore.Server.Kestrel");
         x.AddPrometheusExporter();
     })
     .WithTracing(x =>
     {
         x.AddAspNetCoreInstrumentation();
         x.AddHttpClientInstrumentation();
+        x.AddSource(Tracing.ActivitySource.Name);
         x.AddOtlpExporter(((options) =>
         {
             options.Protocol = OtlpExportProtocol.Grpc;

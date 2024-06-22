@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
+
 namespace TestTelemetry.Controllers;
 
 [ApiController]
@@ -35,26 +36,30 @@ public class WeatherForecastController : ControllerBase
         return Ok(response);
     }
     
-    [Route("BaseRoute")]
+    [Route("CreateTraces")]
     [HttpGet]
-    public IEnumerable<WeatherForecast> GetRaw()
+    public async Task<IEnumerable<WeatherForecast>> GetRaw()
     {
-        _logger.BeginScope("I AM A SCOPE {ID}", Guid.NewGuid());
-        _logger.LogInformation("{CURRENTTIME} TEST STRUCTURED LOG", DateTimeOffset.Now);
-        return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-            {
-                Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-                TemperatureC = Random.Shared.Next(-20, 55),
-                Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-            })
-            .ToArray();
+        await Task.Delay(1000);
+        return await CreateForecastData();
     }
-    
-    [Route("BaseRout2e")]
-    [HttpGet]
-    public IEnumerable<WeatherForecast> GetR2aw()
+
+    private static async Task DelayWork()
+    {   
+        using var _ = Tracing.ActivitySource.StartActivity();
+        await Task.Delay(1000);
+    }
+
+    private static async Task<WeatherForecast[]> CreateForecastData()
     {
-        _logger.LogInformation("GetRaw");
+        using var _ = Tracing.ActivitySource.StartActivity();
+        await Task.Delay(1000);
+        var v1 = DelayWork();
+        var v2 = DelayWork();
+        
+        await Task.WhenAll(v1, v2);
+
+        await DelayWork();
         return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
                 Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
@@ -66,10 +71,11 @@ public class WeatherForecastController : ControllerBase
 
 
     [HttpPost]
-    [Route("SomeOtherRoute")]
+    [Route("CreateSomeLogs")]
     public IEnumerable<WeatherForecast> GetByDate()
     {
-        _logger.LogInformation("GetByDate");
+        _logger.BeginScope("I AM A SCOPE {ID}", Guid.NewGuid());
+        _logger.LogInformation("{CURRENTTIME} TEST STRUCTURED LOG", DateTimeOffset.Now);
         return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
                 Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
