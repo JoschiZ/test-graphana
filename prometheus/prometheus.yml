@@ -2,9 +2,3 @@ global:
   scrape_interval:     5s 
 
 scrape_configs:
-  - job_name: 'read-prometheus'
-    static_configs:
-    - targets: ['XXXapp:8080']
-  - job_name: 'read-otel'
-    static_configs:
-    - targets: ['XXXotel:8888']

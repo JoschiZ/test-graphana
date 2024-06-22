@@ -13,6 +13,10 @@ exporters:
     endpoint: "http://prometheus:9090/api/v1/write"
     tls:
       insecure: true
+  otlp:
+    endpoint: "http://tempo:4317"
+    tls:
+      insecure: true
 
 service:
   telemetry:
@@ -27,3 +31,6 @@ service:
     metrics:
       receivers: [otlp]
       exporters: [prometheusremotewrite]
+    traces:
+      receivers: [otlp]
+      exporters: [otlp]

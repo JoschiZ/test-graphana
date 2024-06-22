@@ -11,9 +11,10 @@
   <component name="ChangeListManager">
     <list default="true" id="4a9cdc7c-e0b6-4e79-99c6-e6577582a7c5" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.TestTelemetry/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TestTelemetry/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestTelemetry.sln" beforeDir="false" afterPath="$PROJECT_DIR$/TestTelemetry.sln" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestTelemetry/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TestTelemetry/Program.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/otel-collector-config.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/otel-collector-config.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/global.json" beforeDir="false" afterPath="$PROJECT_DIR$/global.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/prometheus/prometheus.yml" beforeDir="false" afterPath="$PROJECT_DIR$/prometheus/prometheus.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -41,33 +42,33 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    ".NET Launch Settings Profile.TestTelemetry: http.executor": "Run",
-    ".NET Launch Settings Profile.TestTelemetry: https.executor": "Debug",
-    "Docker.TestTelemetry/Dockerfile.executor": "Run",
-    "Docker.component-hub/compose.yml: Compose Deployment.executor": "Run",
-    "Docker.docker-compose.yml.app: Compose Deployment.executor": "Run",
-    "Docker.docker-compose.yml.loki: Compose Deployment.executor": "Run",
-    "Docker.docker-compose.yml: Compose Deployment.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;.NET Launch Settings Profile.TestTelemetry: http.executor&quot;: &quot;Run&quot;,
+    &quot;.NET Launch Settings Profile.TestTelemetry: https.executor&quot;: &quot;Debug&quot;,
+    &quot;Docker.TestTelemetry/Dockerfile.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.component-hub/compose.yml: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.docker-compose.yml.app: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.docker-compose.yml.loki: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.docker-compose.yml: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "rider.external.source.directories": [
-      "C:\\Users\\josch\\AppData\\Roaming\\JetBrains\\Rider2024.2\\resharper-host\\DecompilerCache",
-      "C:\\Users\\josch\\AppData\\Roaming\\JetBrains\\Rider2024.2\\resharper-host\\SourcesCache",
-      "C:\\Users\\josch\\AppData\\Local\\Symbols\\src"
+  &quot;keyToStringList&quot;: {
+    &quot;rider.external.source.directories&quot;: [
+      &quot;C:\\Users\\josch\\AppData\\Roaming\\JetBrains\\Rider2024.2\\resharper-host\\DecompilerCache&quot;,
+      &quot;C:\\Users\\josch\\AppData\\Roaming\\JetBrains\\Rider2024.2\\resharper-host\\SourcesCache&quot;,
+      &quot;C:\\Users\\josch\\AppData\\Local\\Symbols\\src&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected=".NET Launch Settings Profile.TestTelemetry: https">
     <configuration name="TestTelemetry: IIS Express" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/TestTelemetry/TestTelemetry.csproj" />
@@ -215,6 +216,7 @@
       <workItem from="1718960514293" duration="13376000" />
       <workItem from="1718988525674" duration="4509000" />
       <workItem from="1719044439135" duration="4040000" />
+      <workItem from="1719083537364" duration="1906000" />
     </task>
     <servers />
   </component>

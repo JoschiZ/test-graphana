@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.HttpLogging;
 using OpenTelemetry.Exporter;
 using OpenTelemetry.Metrics;
 using OpenTelemetry.Resources;
+using OpenTelemetry.Trace;
 using Serilog;
 using Serilog.Sinks.Grafana.Loki;
 using Serilog.Sinks.OpenTelemetry;
@@ -62,14 +63,32 @@ builder.Services.AddOpenTelemetry()
         {
             resourceBuilder.AddAttributes(new KeyValuePair<string, object>[]
             {
-                new KeyValuePair<string, object>("service.name", "otelapp"),
-                new KeyValuePair<string, object>("service.instance.id", "instance1"),
+                new("service.name", "otelapp"),
+                new("service.instance.id", "instance1"),
             });
         });
         x.AddMeter(
             "Microsoft.AspNetCore.Hosting",
             "Microsoft.AspNetCore.Server.Kestrel");
         x.AddPrometheusExporter();
+    })
+    .WithTracing(x =>
+    {
+        x.AddAspNetCoreInstrumentation();
+        x.AddHttpClientInstrumentation();
+        x.AddOtlpExporter(((options) =>
+        {
+            options.Protocol = OtlpExportProtocol.Grpc;
+            options.Endpoint = new Uri("http://otel:4317");
+        }));
+        x.ConfigureResource(resourceBuilder =>
+        {
+            resourceBuilder.AddAttributes(new KeyValuePair<string, object>[]
+            {
+                new("service.name", "otelapp"),
+                new("service.instance.id", "instance1"),
+            });
+        });
     });
 
 var app = builder.Build();

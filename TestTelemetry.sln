@@ -8,6 +8,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		prometheus\prometheus.yml = prometheus\prometheus.yml
 		config\loki.yml = config\loki.yml
 		config\otel-collector-config.yaml = config\otel-collector-config.yaml
+		config\tempo.yaml = config\tempo.yaml
+		config\grafana-datasources.yaml = config\grafana-datasources.yaml
 	EndProjectSection
 EndProject
 Global
